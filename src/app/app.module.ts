@@ -24,7 +24,11 @@ import { HttpClientModule } from '@angular/common/http';
     NgxSpinnerModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'API_URL',useValue:"https://localhost:7249/api/", multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
