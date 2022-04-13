@@ -1,5 +1,6 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/contracts/product';
 import { HttpClientService } from 'src/app/services/common/http-client.service';
 
 @Component({
@@ -8,13 +9,14 @@ import { HttpClientService } from 'src/app/services/common/http-client.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-
+  products: Product[] = [] ;
   constructor(private httpClient : HttpClientService) { }
 
   ngOnInit(): void {
-    this.httpClient.get(
+
+    this.httpClient.get<Product[]>(
       {controller:"products"}
-    ).subscribe(data => console.log(data));
+    ).subscribe(data => this.products = data);
 
       // this.httpClient.post({controller:"products"} , {
       //   name:"kalem",
@@ -34,8 +36,8 @@ export class ProductsComponent implements OnInit {
       //   apiUrl:"https://jsonplaceholder.typicode.com/", controller:"posts"}
       // ).subscribe(data => console.log(data));
 
-      this.httpClient.get({
-        fullEndPoint:"https://jsonplaceholder.typicode.com/posts"}).subscribe(data => console.log(data));
+      // this.httpClient.get({
+      //   fullEndPoint:"https://jsonplaceholder.typicode.com/posts"}).subscribe(data => console.log(data));
   }
 
 }
