@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 declare var alertify: any;
-declare var $:any;
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +8,11 @@ export class AlertifyService {
 
   constructor() { }
 
-  message(message: string, messageType: MessageType = MessageType.Notify, position: Position = Position.TopRight, delay: number = 5 , dismissOthers : boolean = false) {
-    alertify.set('notifier', 'position', position);
-    alertify.set('notifier', 'delay', delay);
-    const msg = alertify[messageType](message);
-    if(dismissOthers)
+  message(message: string, alertifyOptions : AlertifyOptions) {
+    alertify.set('notifier', 'position', alertifyOptions.position);
+    alertify.set('notifier', 'delay', alertifyOptions.delay);
+    const msg = alertify[alertifyOptions.messageType](message);
+    if(alertifyOptions.dismissOthers)
       msg.dismissOthers();
   }
 
@@ -38,4 +37,11 @@ export enum Position {
   TopLeft = "top-left",
   TopCenter = "top-center",
   TopRight = "top-right"
+}
+
+export class AlertifyOptions{
+  messageType: MessageType = MessageType.Notify;
+  position: Position = Position.TopRight;
+  delay: number = 5;
+  dismissOthers: boolean = false;
 }
