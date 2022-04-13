@@ -34,6 +34,31 @@
     </div>
 </div>
 
+<div *ngIf="Products.length !== 0">
+  <h3 class="mb-3 text-center">Product List</h3>
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">User Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of Products">
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.price }}</td>          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
 <ngx-spinner name="SpinnerBox" type="square-jelly-box" size="default"></ngx-spinner>
 <ngx-spinner name="SpinnerAtom" type="ball-atom" size="default"></ngx-spinner>
 <ngx-spinner name="SpinnerCog" type="cog" size="large"></ngx-spinner>
