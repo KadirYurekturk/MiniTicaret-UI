@@ -54,14 +54,13 @@ export class ListComponent implements OnInit {
 
     this.dataSource = new MatTableDataSource<List_Product>(allproducts.pageProducts);
     this.paginator.length = allproducts.totalCount;
-    debugger;
   }
 
-  delete(id,event) {
-    alert(id);
-    const td = event.target.parentElement.parentElement;
-    $(td).fadeOut(2000);
-  }
+  //delete(id,event) {
+  //  alert(id);
+  //  const td = event.target.parentElement.parentElement;
+  //  $(td).fadeOut(2000);
+  //}
 
   async pageChanged() {
     await this.getProductsWithPaging();
