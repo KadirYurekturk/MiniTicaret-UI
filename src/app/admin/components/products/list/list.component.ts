@@ -7,6 +7,8 @@ import { List_Product } from '../../../../contracts/list_products';
 import { AlertifyService, MessageType, Position } from '../../../../services/admin/alertify.service';
 import { ProductService } from '../../../../services/common/models/product.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -16,7 +18,7 @@ export class ListComponent implements OnInit {
 
   constructor(private productService: ProductService, private spinner: NgxSpinnerService, private alertify: AlertifyService) { }
 
-  displayedColumns: string[] = ['name', 'stock', 'price', 'createdAt', 'updatedAt'];
+  displayedColumns: string[] = ['name', 'stock', 'price', 'createdAt', 'updatedAt','edit','delete'];
 
   dataSource: MatTableDataSource<List_Product> = null; // = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -53,6 +55,12 @@ export class ListComponent implements OnInit {
     this.dataSource = new MatTableDataSource<List_Product>(allproducts.pageProducts);
     this.paginator.length = allproducts.totalCount;
     debugger;
+  }
+
+  delete(id,event) {
+    alert(id);
+    const td = event.target.parentElement.parentElement;
+    $(td).fadeOut(2000);
   }
 
   async pageChanged() {
